@@ -1,0 +1,57 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+    labels:
+        app: nginx
+    name: nginx
+    namespace: pro
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: nginx
+    template:
+        metadata:
+            labels:
+                app: nginx
+        spec:
+            containers:
+                - env:
+                      - name: DB_HOST
+                        value: ${DB_HOST}
+                      - name: DB_PASS
+                        value: ${DB_PASS}
+                      - name: DB_USER
+                        value: ${DB_USER}
+                      - name: DB_PORT
+                        value: ${DB_PORT}
+                      - name: DB
+                        value: ${DB}
+                      - name: NODE_ENV
+                        value: production
+                  image: "registry.cn-hangzhou.aliyuncs.com/youdt/nginx:v2"
+                  imagePullPolicy: IfNotPresent
+                  name: nginx
+                  ports:
+                      - containerPort: 80
+                        protocol: TCP
+                      - containerPort: 81
+                        protocol: TCP
+                      - containerPort: 443
+                        protocol: TCP
+                  volumeMounts:
+                      - name: data
+                        mountPath: /data
+                        subPath: nginx/data
+                      - name: letsencrypt
+                        mountPath: /etc/letsencrypt
+                        subPath: nginx/encrypt
+            volumes:
+                - name: data
+                  nfs:
+                      path: ${NFS_PATH}
+                      server: ${NFS}
+                - name: letsencrypt
+                  nfs:
+                      path: ${NFS_PATH}
+                      server: ${NFS}
