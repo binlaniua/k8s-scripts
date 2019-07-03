@@ -4,7 +4,7 @@ metadata:
     name: skywalking-ui
     namespace: efk
     labels:
-        name: skywalking-ui
+        app: skywalking-ui
 spec:
     revisionHistoryLimit: 0
     strategy:
@@ -15,7 +15,7 @@ spec:
     template:
         metadata:
             labels:
-                name: skywalking-ui
+                app: skywalking-ui
         spec:
             restartPolicy: Always
             containers:
@@ -23,7 +23,7 @@ spec:
                   name: skywalking-ui
                   resources: {}
                   env:
-                      - name: SW_OAP_ADDRESS
-                        value: skywalking-oap-service.efk:12800
+                      - name: collector.ribbon.listOfServers
+                        value: "skywalking-oap-service.efk:12800"
                   ports:
                       - containerPort: 8080

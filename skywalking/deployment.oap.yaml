@@ -4,7 +4,7 @@ metadata:
     name: skywalking-oap
     namespace: efk
     labels:
-        name: skywalking-oap
+        app: skywalking-oap
 spec:
     revisionHistoryLimit: 0
     strategy:
@@ -15,7 +15,7 @@ spec:
     template:
         metadata:
             labels:
-                name: skywalking-oap
+                app: skywalking-oap
         spec:
             containers:
                 - image: skywalking/oap
