@@ -34,7 +34,7 @@ spec:
                         --override
                         zookeeper.connect=zk-0.zk-hs.pro.svc.cluster.local:2181,zk-1.zk-hs.pro.svc.cluster.local:2181,zk-2.zk-hs.pro.svc.cluster.local:2181
                         \
-                        --override log.dir=/var/lib/kafka \
+                        --override log.dirs=/var/lib/kafka \
                         --override auto.create.topics.enable=true \
                         --override auto.leader.rebalance.enable=true \
                         --override background.threads=10 \
@@ -42,9 +42,9 @@ spec:
                         --override delete.topic.enable=true \
                         --override leader.imbalance.check.interval.seconds=300 \
                         --override leader.imbalance.per.broker.percentage=10 \
-                        --override log.flush.interval.messages=9223372036854775807 \
+                        --override log.flush.interval.messages=10000 \
                         --override log.flush.offset.checkpoint.interval.ms=60000 \
-                        --override log.flush.scheduler.interval.ms=9223372036854775807 \
+                        --override log.flush.scheduler.interval.ms=6000 \
                         --override log.retention.bytes=-1 \
                         --override log.retention.hours=168 \
                         --override log.roll.hours=168 \
