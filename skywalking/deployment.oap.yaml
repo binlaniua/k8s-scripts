@@ -18,7 +18,7 @@ spec:
                 app: skywalking-oap
         spec:
             containers:
-                - image: skywalking/oap
+                - image: wutang/skywalking-oap:6.1.0
                   name: skywalking-oap
                   imagePullPolicy: Always
                   resources: {}
@@ -26,8 +26,16 @@ spec:
                       - name: SW_STORAGE
                         value: elasticsearch
                       - name: SW_STORAGE_ES_CLUSTER_NODES
-                        value: es-elasticsearch:9200
+                        value: es-elasticsearch.ekf:9200
                   ports:
                       - containerPort: 11800
                       - containerPort: 12800
+                  volumeMounts:
+                      - name: application
+                        mountPath: /apache-skywalking-apm-bin/config/application.yml
+                        subPath: application.yml
             restartPolicy: Always
+            volumes:
+                - name: application
+                  configMap:
+                    name: skywalking-config

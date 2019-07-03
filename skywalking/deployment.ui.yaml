@@ -19,7 +19,7 @@ spec:
         spec:
             restartPolicy: Always
             containers:
-                - image: skywalking/ui
+                - image: wutang/skywalking-ui:6.1.0
                   name: skywalking-ui
                   resources: {}
                   env:
