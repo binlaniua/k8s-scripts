@@ -26,7 +26,7 @@ spec:
                       - name: SW_STORAGE
                         value: elasticsearch
                       - name: SW_STORAGE_ES_CLUSTER_NODES
-                        value: es-elasticsearch.ekf:9200
+                        value: es-elasticsearch.efk:9200
                   ports:
                       - containerPort: 11800
                       - containerPort: 12800
@@ -38,4 +38,4 @@ spec:
             volumes:
                 - name: application
                   configMap:
-                    name: skywalking-config
+                      name: skywalking-config
