@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+    name: skywalking-ui-service
+    namespace: efk
+    labels:
+      app: skywalking-ui
+spec:
+    selector:
+        app: skywalking-ui
+    ports:
+        - name: "8080"
+          port: 8080
+          targetPort: 8080

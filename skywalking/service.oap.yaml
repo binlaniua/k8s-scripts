@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+    name: skywalking-oap-service
+    namespace: efk
+    labels:
+        app: skywalking-oap
+spec:
+    selector:
+        app: skywalking-oap
+    ports:
+        - port: 11800
+          targetPort: 11800
+          protocol: TCP
+          name: "11800"
+        - port: 12800
+          targetPort: 12800
+          protocol: TCP
+          name: "12800"

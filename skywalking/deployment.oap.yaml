@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    name: skywalking-oap
+    namespace: efk
+    labels:
+        name: skywalking-oap
+spec:
+    revisionHistoryLimit: 0
+    strategy:
+        rollingUpdate:
+            maxSurge: 1
+            maxUnavailable: 1
+        type: RollingUpdate
+    template:
+        metadata:
+            labels:
+                name: skywalking-oap
+        spec:
+            containers:
+                - image: skywalking/oap
+                  name: skywalking-oap
+                  imagePullPolicy: Always
+                  resources: {}
+                  env:
+                      - name: SW_STORAGE
+                        value: elasticsearch
+                      - name: SW_STORAGE_ES_CLUSTER_NODES
+                        value: es-elasticsearch:9200
+                  ports:
+                      - containerPort: 11800
+                      - containerPort: 12800
+            restartPolicy: Always
