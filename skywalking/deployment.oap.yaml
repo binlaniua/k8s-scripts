@@ -27,6 +27,12 @@ spec:
                         value: elasticsearch
                       - name: SW_STORAGE_ES_CLUSTER_NODES
                         value: es-elasticsearch.efk:9200
+                      - name: SW_STORAGE_ES_RECORD_DATA_TTL
+                        value: "1"
+                      - name: SW_STORAGE_ES_OTHER_METRIC_DATA_TTL
+                        value: "1"
+                      - name: SW_STORAGE_ES_MONTH_METRIC_DATA_TTL
+                        value: "1"
                   ports:
                       - containerPort: 11800
                       - containerPort: 12800
